@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum LanguagePreference {
+  EN
+  ES
+}
+
+model Registration {
+  id        String             @id @default(uuid())
+  fullName  String             @map("full_name")
+  whatsapp  String
+  email     String?
+  language  LanguagePreference
+  createdAt DateTime           @default(now()) @map("created_at")
+
+  draws Draw[]
+
+  @@map("registrations")
+}
+
+model Draw {
+  id             String       @id @default(uuid())
+  registrationId String       @map("registration_id")
+  registration   Registration @relation(fields: [registrationId], references: [id])
+  drawnAt        DateTime     @default(now()) @map("drawn_at")
+
+  @@map("draws")
+}

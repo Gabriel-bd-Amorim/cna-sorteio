@@ -15,7 +15,7 @@ export class RegistrationsController {
   @Get()
   findAll() {
     return this.registrationsService.findAll();
-  }
+  }   
 
   @Get("count")
   count() {

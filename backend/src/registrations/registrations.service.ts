@@ -1,5 +1,5 @@
 import { ConflictException, Injectable } from "@nestjs/common";
-import ExcelJS from "exceljs";
+import * as ExcelJS from "exceljs";
 import { PrismaService } from "../prisma/prisma.service";
 import { CreateRegistrationDto } from "./dto/create-registration.dto";
 
